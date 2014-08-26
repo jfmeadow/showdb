@@ -1,0 +1,911 @@
+namelist$movie
+namelist
+i=1
+wes.palette(name=namelist$movies[i], namelist$wesnums[i])
+wescols <- NULL#
+for(i in 1:length(namelist$movies)) {#
+	wescols <- c(wescols, #
+		wes.palette(name=namelist$movies[i], #
+			namelist$wesnums[i])#
+}
+wescols <- NULL#
+for(i in 1:length(namelist$movies)) {#
+	wescols <- c(wescols, #
+		wes.palette(name=namelist$movies[i], #
+			namelist$wesnums[i]))#
+}
+wescols
+length(wescols)
+devtools::install_github("karthik/wesanderson")
+wescols <- NULL#
+for(i in 1:length(namelist$movies)) {#
+	wescols <- c(wescols, #
+		wes.palette(name=namelist$movies[i], #
+			namelist$wesnums[i]))#
+}
+length(wescols)
+library(wesanderson)
+wescols <- NULL#
+for(i in 1:length(namelist$movies)) {#
+	wescols <- c(wescols, #
+		wes.palette(name=namelist$movies[i], #
+			namelist$wesnums[i]))#
+}
+length(wescols)
+write.table(wes22, file='wescols.txt', head=FALSE, row.names=FALSE, quote=FALSE)
+write.table(wes22, file='wescols.txt', col.names=FALSE, row.names=FALSE, quote=FALSE)
+write.table(wesSort[wes22], file='wescols.txt', col.names=FALSE, row.names=FALSE, quote=FALSE)
+length(wes22)
+wes22 <- c(1, 3, 4, 5, 7, 9, 10, 11, 15, 19, 25, 27, 28, 30, 38, 45, 47, 51, 53, 58, 61, 68)
+write.table(wesSort[wes22], file='wescols.txt', col.names=FALSE, row.names=FALSE, quote=FALSE)
+read.delim('wescols.txt', head=FALSE)
+vector(read.delim('wescols.txt', head=FALSE))
+as.vector(read.delim('wescols.txt', head=FALSE))
+read.delim('wescols.txt', head=FALSE)$V1
+as.character(read.delim('wescols.txt', head=FALSE)$V1)
+0.2159 - 0.1661
+165/40
+22/17
+5/22
+?data.frame
+load('~/Dropbox/2012 Local Adaptation to Share/local_adaptation_figures/JFM_figures.RData')
+reg <- data.frame(eff = LAdata.PF.Single$biomass.effectsize1a, #
+	dis = LAdata.PF.Single$log.distance.PF) #
+head(reg)#
+reg$edis <- exp(reg$dis)#
+nreg <- data.frame(eff = new.dat.PF.Single$biomass.effectsize1a, #
+	dis = new.dat.PF.Single$log.distance.PF, #
+	edis = exp(new.dat.PF.Single$log.distance.PF))#
+sort(reg$eff)[1:2]#
+rev(sort(reg$eff))[1:2]#
+#
+## replace 1 with 0 for x-axis - throws everything off#
+# reg$edis[reg$edis == 1] <- 0.5#
+#
+##########################
+# dev.new(width=4.5, height=4.5)#
+par(mar=c(5,5,1,.5), las=1)#
+plot(reg$eff~reg$edis, log='x', xaxt='n', , yaxt='n', yaxs='i',#
+	type='n', bty='l', las=1, ylim=c(-1,2.8),#
+	xlab='Distance between plant and fungal origin (km)', #
+	ylab='Mean plant response\nto mycorrhizal inoculation')#
+abline(h=0, col='gray', lty=3, lwd=2)#
+points(reg$eff ~ reg$edis, #
+	pch=16, col=rgb(0,0,0,.3))#
+points(nreg$eff ~ nreg$edis, type='l', col='gray20', lwd=2)#
+axis(1, at=c(seq(0,10,1), seq(20,100,10), seq(200,1000,100), seq(2000,10000,1000)), #
+	labels=FALSE, col='gray30', tcl=-.25, lwd.ticks=.7)#
+axis(2, at=c(-0.916, 0, 1, 2, 2.753), labels=c(-0.9, 0, 1,2,2.75))#
+axis(1, at=c(1,10,100,1000,10000), #
+	labels=c(expression('<1'), #
+		10, #
+		expression(paste('10'^{2})), #
+		expression(paste('10'^{3})), #
+		expression(paste('10'^{4}))))
+par(mar=c(5,5,1,.5), las=1)#
+plot(reg$eff~reg$edis, log='x', xaxt='n', , yaxt='n', yaxs='i',#
+	type='n', bty='l', las=1, #ylim=c(-1,2.8),#
+	xlab='Distance between plant and fungal origin (km)', #
+	ylab='Mean plant response\nto mycorrhizal inoculation')#
+abline(h=0, col='gray', lty=3, lwd=2)#
+points(reg$eff ~ reg$edis, #
+	pch=16, col=rgb(0,0,0,.3))#
+points(nreg$eff ~ nreg$edis, type='l', col='gray20', lwd=2)#
+axis(1, at=c(seq(0,10,1), seq(20,100,10), seq(200,1000,100), seq(2000,10000,1000)), #
+	labels=FALSE, col='gray30', tcl=-.25, lwd.ticks=.7)#
+axis(2, at=c(-0.916, 0, 1, 2, 2.753), labels=c(-0.9, 0, 1,2,2.75))#
+axis(1, at=c(1,10,100,1000,10000), #
+	labels=c(expression('<1'), #
+		10, #
+		expression(paste('10'^{2})), #
+		expression(paste('10'^{3})), #
+		expression(paste('10'^{4}))))
+par(mar=c(5,5,1,.5), las=1)#
+plot(reg$eff~reg$edis, log='x', xaxt='n', , yaxt='n', #yaxs='i',#
+	type='n', bty='l', las=1, #ylim=c(-1,2.8),#
+	xlab='Distance between plant and fungal origin (km)', #
+	ylab='Mean plant response\nto mycorrhizal inoculation')#
+abline(h=0, col='gray', lty=3, lwd=2)#
+points(reg$eff ~ reg$edis, #
+	pch=16, col=rgb(0,0,0,.3))#
+points(nreg$eff ~ nreg$edis, type='l', col='gray20', lwd=2)#
+axis(1, at=c(seq(0,10,1), seq(20,100,10), seq(200,1000,100), seq(2000,10000,1000)), #
+	labels=FALSE, col='gray30', tcl=-.25, lwd.ticks=.7)#
+axis(2, at=c(-0.916, 0, 1, 2, 2.753), labels=c(-0.9, 0, 1,2,2.75))#
+axis(1, at=c(1,10,100,1000,10000), #
+	labels=c(expression('<1'), #
+		10, #
+		expression(paste('10'^{2})), #
+		expression(paste('10'^{3})), #
+		expression(paste('10'^{4}))))
+par(mar=c(5,5,1,.5), las=1)#
+plot(reg$eff~reg$edis, log='x', xaxt='n', , yaxt='n', #yaxs='i',#
+	type='n', bty='l', las=1, #ylim=c(-1,2.8),#
+	xlab='Distance between plant and fungal origin (km)', #
+	ylab='Mean plant response\nto mycorrhizal inoculation')#
+abline(h=0, col='gray', lty=3, lwd=2)#
+points(reg$eff ~ reg$edis, #
+	pch=16, col=rgb(0,0,0,.3))#
+points(nreg$eff ~ nreg$edis, type='l', col='gray20', lwd=2)#
+axis(1, at=c(seq(0,10,1), seq(20,100,10), seq(200,1000,100), seq(2000,10000,1000)), #
+	labels=FALSE, col='gray30', tcl=-.25, lwd.ticks=.7)#
+#axis(2, at=c(-0.916, 0, 1, 2, 2.753), labels=c(-0.9, 0, 1,2,2.75))#
+axis(1, at=c(1,10,100,1000,10000), #
+	labels=c(expression('<1'), #
+		10, #
+		expression(paste('10'^{2})), #
+		expression(paste('10'^{3})), #
+		expression(paste('10'^{4}))))
+par(mar=c(5,5,1,.5), las=1)#
+plot(reg$eff~reg$edis, log='x', xaxt='n', , yaxt='n', #yaxs='i',#
+	type='n', bty='l', las=1, #ylim=c(-1,2.8),#
+	xlab='Distance between plant and fungal origin (km)', #
+	ylab='Mean plant response\nto mycorrhizal inoculation')#
+abline(h=0, col='gray', lty=3, lwd=2)#
+points(reg$eff ~ reg$edis, #
+	pch=16, col=rgb(0,0,0,.3))#
+points(nreg$eff ~ nreg$edis, type='l', col='gray20', lwd=2)#
+axis(1, at=c(seq(0,10,1), seq(20,100,10), seq(200,1000,100), seq(2000,10000,1000)), #
+	labels=FALSE, col='gray30', tcl=-.25, lwd.ticks=.7)#
+#axis(2, at=c(-0.916, 0, 1, 2, 2.753), labels=c(-0.9, 0, 1,2,2.75))#
+axis(2)#
+axis(1, at=c(1,10,100,1000,10000), #
+	labels=c(expression('<1'), #
+		10, #
+		expression(paste('10'^{2})), #
+		expression(paste('10'^{3})), #
+		expression(paste('10'^{4}))))
+rm(list=ls())
+install.packages("devtools")#
+library("devtools")#
+devtools::install_github("klutometis/roxygen")#
+library(roxygen2)
+install.packages('cmath')
+devtools::install_github("klutometis/roxygen")
+devtools::install_github("klutometis/roxygen2")
+install.packages('roxygen2')
+library(roxygen2)
+setwd("~/Desktop")
+create("mbFunctions")
+roxygen2::roxygenise('mbFunctions')
+devtools::document('mbFunctions')
+ls()
+Evenness()
+Evenness
+install('mbFunctions')
+roxygen2::roxygenise('mbFunctions')
+devtools::document('mbFunctions')
+install('mbFunctions')
+library(mbFunctions)
+search()
+QiimeIn
+QiimeIn()
+read.delim('particlesCombined.txt', head=TRUE, sep='\t')
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')
+str(part)
+library(lubridate)
+mdy(part$dateTime)
+?mdy
+parse_date_time(part$dateTime)
+partpart[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8
+part
+head(part)
+part$subTreat <- paste0(part$subject, part$treatment)
+part$subTreat
+nlevels(part$subTreat)
+part$subTreat <- factor(paste0(part$subject, part$treatment))
+nlevels(part$subTreat)
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}
+ls()
+s1high
+list.low <- ls(pattern = 'low')
+list.low
+for (i in 1:length(list.low)) {#
+	print(dim(get(list.low)))#
+	}
+names(part)
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}
+list.low <- ls(pattern = 'low')
+for (i in 1:length(list.low)) {#
+	print(dim(get(list.low)))#
+	}
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply#
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.low <- ls(pattern = 'low')
+for (i in 1:length(list.low)) {#
+	print(dim(get(list.low)))#
+	}
+part$diff10
+part$diff510
+part$diff35
+part$diff510
+part$diff10
+part$subTreat
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}
+list.low
+for (i in 1:length(list.low)) {#
+	print(dim(get(list.low[i])))#
+	}
+plot(s1low$part$diff10)
+s1low$part$diff10
+plot(s1low$diff10)
+plot(s1low$diff10, type='l')
+agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.low)) {#
+    name <- paste("agg.", list.low[i], sep = "")#
+    assign(name, aggregate(get(list.low[i]), by = list(agg18), FUN = "sum"))#
+}
+18*5
+agg18
+name <- paste("agg.", list.low[i], sep = "")
+name
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.flowlow <- ls(pattern = '.low')#
+#
+for (i in 1:length(list.flowlow)) {#
+	print(dim(get(list.flowlow[i])))#
+	}
+rm(list.low)
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.flowlow <- ls(pattern = '.low')#
+#
+for (i in 1:length(list.flowlow)) {#
+	print(dim(get(list.flowlow[i])))#
+	}
+list.flowlow
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.flowlow <- ls(pattern = '\\.low')
+list.flowlow
+rm(list=ls())
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')
+agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i]), by = list(agg18), FUN = "sum"))#
+}
+names(part)
+part <- part[, c(4:15, 17:28)]
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply
+names(part)
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}
+plot(s1low$diff10, type='l')
+agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i]), by = list(agg18), FUN = "sum"))#
+}
+agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i][, -1]), by = list(agg18), FUN = "sum"))#
+}
+list.Low[i]
+get(list.Low[i][, -1])
+get(list.Low[i])
+get(list.Low[i])[, -1]
+agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i])[, -1], by = list(agg18), FUN = "sum"))#
+}
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+    print(get(aggs[i]))#
+}
+aggs
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply#
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+    print(get(aggs[i]))#
+}
+cutoffs =    0.3   0.5     1   2.5     5    10+#
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside / part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside / part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside / part$Ch4DiffSupply#
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]#
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+    print(get(aggs[i]))#
+}
+cutoffs =    0.3   0.5     1   2.5     5    10+#
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply#
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]#
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+    name <- paste("agg.", list.Low[i], sep = "")#
+    assign(name, aggregate(get(list.Low[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+    print(get(aggs[i]))#
+}
+aggs
+Agg.df <- data.frame(matrix(0, 18, 3))
+Agg.df <- data.frame(matrix(0, 0, 3))
+Agg.df <- data.frame(matrix(0, 0, 4))#
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+	Agg.tmp <- get(aggs[i])#
+	print(get(aggs[i]))#
+	Agg.df <- data.frame(rbind(Agg.df, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4]#
+#
+}
+Agg.df <- data.frame(matrix(0, 0, 4))#
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+	Agg.tmp <- get(aggs[i])#
+	print(get(aggs[i]))#
+	Agg.df <- data.frame(rbind(Agg.df, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])#
+#
+}
+Agg.df <- data.frame(matrix(0, 0, 4))#
+aggs <- ls(pattern = "agg.")#
+for (i in 1:length(aggs)) {#
+	Agg.tmp <- get(aggs[i])#
+	print(get(aggs[i]))#
+	Agg.df <- data.frame(rbind(Agg.df, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])))#
+#
+}
+aggs
+cutoffs =    0.3   0.5     1   2.5     5    10+#
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply#
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]#
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+	name <- paste("agg.", list.Low[i], sep = "")#
+	assign(name, aggregate(get(list.Low[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+Agg.df <- data.frame(matrix(0, 0, 4))#
+Aggs <- ls(pattern = "agg.")#
+for (i in 1:length(Aggs)) {#
+	Agg.tmp <- get(Aggs[i])#
+	print(get(Aggs[i]))#
+	Agg.df <- data.frame(rbind(Agg.df, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])))#
+#
+}
+Agg.df
+names(Agg.df)[1] <- group
+names(Agg.df)[1] <- 'group'
+Agg.df
+boxplot(Agg.df$diff10 ~ Agg.df$group)
+abline(h=0, col='tomato', lty=3, lwd=2)
+males <- c(1, 5, 6, 8)#
+females <- c(2, 3, 4, 7)
+cols <- rep('tomato', 10)#
+cols[c(1, 5, 6, 8)] <- 'cornflowerblue'
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=0, col=cols)
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16)
+abline(h=0, col='tomato', lty=3, lwd=2)
+abline(h=0, col='gray', lty=3, lwd=2)
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', ylab='Particles (>10um) / L / min')#
+abline(h=0, col='gray', lty=3, lwd=2)
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10um) L', ^{-1},  'min')))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10um) L' ^{-1},  'min')))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10um) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)
+mtext('People', side=1)
+mtext(c('Men', 'Women'), side=1, at=c(3, 6), col=c('cornflowerblue', 'tomato'))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3, 6), line=2, font=2,#
+	col=c('cornflowerblue', 'tomato'))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3, 6), line=1, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3, 6.5), line=1, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+rm(list=ls(pattern='agg.'))
+ls()
+cutoffs =    0.3   0.5     1   2.5     5    10+#
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply#
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]#
+#
+cols <- rep('tomato', 10)#
+cols[c(1, 5, 6, 8)] <- 'cornflowerblue'#
+#males <- c(1, 5, 6, 8)#
+#females <- c(2, 3, 4, 7)#
+#
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+list.High <- ls(pattern = 'high')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+for (i in 1:length(list.High)) {#
+	print(dim(get(list.High[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')#
+plot(s1high$diff10, type='l')#
+#
+## Low#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+	name <- paste("agg.", list.Low[i], sep = "")#
+	assign(name, aggregate(get(list.Low[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+Agg.df <- data.frame(matrix(0, 0, 4))#
+Aggs <- ls(pattern = "agg.")#
+for (i in 1:length(Aggs)) {#
+	Agg.tmp <- get(Aggs[i])#
+	print(get(Aggs[i]))#
+	Agg.df <- data.frame(rbind(Agg.df, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])))#
+#
+}#
+names(Agg.df)[1] <- 'group'#
+Agg.df#
+#
+rm(list=ls(pattern='agg.'))#
+#
+## High#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.High)) {#
+	name <- paste("agg.", list.High[i], sep = "")#
+	assign(name, aggregate(get(list.High[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+Agg.df.High <- data.frame(matrix(0, 0, 4))#
+Aggs <- ls(pattern = "agg.")#
+for (i in 1:length(Aggs)) {#
+	Agg.tmp <- get(Aggs[i])#
+	print(get(Aggs[i]))#
+	Agg.df.High <- data.frame(rbind(Agg.df.High, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])))#
+#
+}#
+names(Agg.df.High)[1] <- 'group'#
+Agg.df.High#
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))#
+dev.new()#
+boxplot(Agg.df.High$diff10 ~ Agg.df.High$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab=expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})))#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)
+boxplot(Agg.df.High$diff10 ~ Agg.df.High$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab='')#
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+dev.new()
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab='')#
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply
+plot(part$Ch6DiffInside ~ Ch6DiffSupply)
+plot(part$Ch6DiffInside ~ part$Ch6DiffSupply)
+plot(c(part$Ch6DiffInside, 0) ~ c(0, part$Ch6DiffSupply))
+plot(c(part$Ch6DiffInside, 0, 0) ~ c(0, 0, part$Ch6DiffSupply))
+plot(c(0, 0, part$Ch6DiffInside) ~ c(part$Ch6DiffSupply, 0, 0))
+plot(c(0, part$Ch6DiffInside) ~ c(part$Ch6DiffSupply, 0))
+cor.test(c(part$Ch6DiffInside) ~ c(part$Ch6DiffSupply))
+cor.test(c(part$Ch6DiffInside), c(part$Ch6DiffSupply))
+cor.test(part$Ch6DiffInside, part$Ch6DiffSupply)
+dim(part)
+cor.test(part$Ch6DiffInside[-1], part$Ch6DiffSupply[-2700])
+test.cor
+head(part)
+test.cor <- part[part$subTreat == 's1high', ]
+test <- part[part$subTreat == 's1high', ]
+cor.test(test$Ch6DiffInside, test$Ch6DiffSupply)
+test
+dim(test)
+cor.test(test$Ch6DiffInside[2:90], test$Ch6DiffSupply[1:89])
+cor.test(test$Ch6DiffInside[3:90], test$Ch6DiffSupply[1:88])
+cor.test(test$Ch6DiffInside[4:90], test$Ch6DiffSupply[1:87])
+cor.test(test$Ch6DiffInside[5:90], test$Ch6DiffSupply[1:86])
+cutoffs =    0.3   0.5     1   2.5     5    10+#
+rm(list=ls())#
+part <- read.delim('particlesCombined.txt', head=TRUE, sep='\t')#
+names(part)#
+part[, c(4:15, 17:28)] <- part[, c(4:15, 17:28)]/2.8#
+part$subTreat <- factor(paste0(part$subject, part$treatment))#
+part$diff10 <- part$Ch6DiffInside - part$Ch6DiffSupply#
+part$diff510 <- part$Ch5DiffInside - part$Ch5DiffSupply#
+part$diff35 <- part$Ch4DiffInside - part$Ch4DiffSupply#
+part <- part[, c('subTreat', 'diff10', 'diff510', 'diff35')]#
+#
+#### 3 minute delay?#
+# plot(c(0, part$Ch6DiffInside) ~ c(part$Ch6DiffSupply, 0))#
+# test <- part[part$subTreat == 's1high', ]#
+# cor.test(test$Ch6DiffInside, test$Ch6DiffSupply)#
+# cor.test(test$Ch6DiffInside[2:90], test$Ch6DiffSupply[1:89])#
+# cor.test(test$Ch6DiffInside[3:90], test$Ch6DiffSupply[1:88])#
+# cor.test(test$Ch6DiffInside[4:90], test$Ch6DiffSupply[1:87])#
+# cor.test(test$Ch6DiffInside[5:90], test$Ch6DiffSupply[1:86])#
+dim(part)#
+cols <- rep('tomato', 10)#
+cols[c(1, 5, 6, 8)] <- 'cornflowerblue'#
+#males <- c(1, 5, 6, 8)#
+#females <- c(2, 3, 4, 7)#
+#
+for (i in 1:nlevels(part$subTreat)) {#
+	lev <- levels(part$subTreat)[i]#
+	assign(lev, part[part$subTreat == lev, ])#
+	}#
+list.Low <- ls(pattern = 'low')#
+list.High <- ls(pattern = 'high')#
+#
+for (i in 1:length(list.Low)) {#
+	print(dim(get(list.Low[i])))#
+	}#
+for (i in 1:length(list.High)) {#
+	print(dim(get(list.High[i])))#
+	}#
+#
+plot(s1low$diff10, type='l')#
+plot(s1high$diff10, type='l')#
+#
+## Low#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.Low)) {#
+	name <- paste("agg.", list.Low[i], sep = "")#
+	assign(name, aggregate(get(list.Low[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+Agg.df <- data.frame(matrix(0, 0, 4))#
+Aggs <- ls(pattern = "agg.")#
+for (i in 1:length(Aggs)) {#
+	Agg.tmp <- get(Aggs[i])#
+	print(get(Aggs[i]))#
+	Agg.df <- data.frame(rbind(Agg.df, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])))#
+#
+}#
+names(Agg.df)[1] <- 'group'#
+Agg.df#
+#
+rm(list=ls(pattern='agg.'))#
+#
+## High#
+Agg18 <- rep(letters[1:18], each = 5)#
+for (i in 1:length(list.High)) {#
+	name <- paste("agg.", list.High[i], sep = "")#
+	assign(name, aggregate(get(list.High[i])[, -1], by = list(Agg18), FUN = "sum"))#
+}#
+#
+Agg.df.High <- data.frame(matrix(0, 0, 4))#
+Aggs <- ls(pattern = "agg.")#
+for (i in 1:length(Aggs)) {#
+	Agg.tmp <- get(Aggs[i])#
+	print(get(Aggs[i]))#
+	Agg.df.High <- data.frame(rbind(Agg.df.High, #
+		data.frame(rep(letters[i], nrow(Agg.tmp)), #
+			Agg.tmp[, 2:4])))#
+#
+}#
+names(Agg.df.High)[1] <- 'group'#
+Agg.df.High#
+boxplot(Agg.df$diff10 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab='')#
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))#
+dev.new()#
+boxplot(Agg.df.High$diff10 ~ Agg.df.High$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab='')#
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+dev.new()#
+boxplot(Agg.df$diff510 ~ Agg.df$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab='')#
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+dev.new()#
+boxplot(Agg.df.High$diff510 ~ Agg.df.High$group, cex=.6, col=cols, pch=16, #
+	las=1, xaxt='n', #
+	ylab='')#
+mtext(expression(paste('Particles (>10', mu, 'm) L' ^{-1},  ' min' ^{-1})), #
+	side=2, line=2)#
+abline(h=0, col='gray', lty=3, lwd=2)#
+mtext('People', side=1)#
+mtext(c('Men', 'Women'), side=1, at=c(3.5, 5.5), line=1.5, font=2, cex=1.4,#
+	col=c('cornflowerblue', 'tomato'))
+setwd('~/Desktop/showdb/')
+sdb <- read.delim('showdb.txt', sep='\t', head=TRUE)
+head(sdb)#
+dim(sdb)#
+str(sdb)
+sdb$ShowDate
+sdb <- read.delim('showdb.txt', sep='\t', head=TRUE)
+sdb <- read.delim('showdb.txt', sep='\t', head=TRUE)
+sdb <- read.delim('showdb.txt', sep='\t', head=TRUE)
+sdb <- read.delim('showdb.txt', sep='\t', head=TRUE)
+head(sdb)
+dim(sdb)
+nchar(sdb$ShowDate)
+apply(sdb$ShowDate, 1, 'nchar')
+apply(sdb[, 1], 1, 'nchar')
+for (i in 1:nrow(sdb)) {
+nc[i] <- nchar(sdb$ShowDate[i])
+}
+nc <- rep(0, nrow(sdb))
+sdb$ShowDate <- as.character(sdb$ShowDate)
+for (i in 1:nrow(sdb)) {
+nc <- rep(0, nrow(sdb))
+}
+nc
+for (i in 1:nrow(sdb)) {
+nc[i] <- nchar(sdb$ShowDate[i])
+}
+nc
+sdb$ShowDate
+names(sdb)
+?rapply
+help(package='lubridate')
+library(lubridate)
+mdy('04/06/75')
+x <- mdy(c("1/2/54","1/2/68","1/2/69","1/2/99","1/2/04"))
+x
+m <- year(x) %% 100
+m
+year
+year %% 100
+%%
+year(x) <- ifelse(m > year %% 100, 1900+m, 2000+m)
+library(lubridate)#
+x <- mdy(c("1/2/54","1/2/68","1/2/69","1/2/99","1/2/04"))
+foo <- function(x, year=1968){#
+  m <- year(x) %% 100#
+  year(x) <- ifelse(m > year %% 100, 1900+m, 2000+m)#
+  x#
+}
+foo(x)
+1960 %% 100
+foo <- function(x, year=1968){#
+  m <- year(x) %% 100#
+  year(x) <- ifelse(m > 1960 %% 100, 1900+m, 2000+m)#
+  x#
+}
+foo(x)
+foo <- function(x, year=1968){#
+  m <- year(x) %% 100#
+  year(x) <- ifelse(m > 60, 1900+m, 2000+m)#
+  x#
+}
+foo(x)
+?data.frame

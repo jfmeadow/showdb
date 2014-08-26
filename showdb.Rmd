@@ -1,0 +1,214 @@
+
+
+
+
+# ShowDB Analysis
+
+```{r timeStamp, results='asis'}
+Sys.Date()
+```
+
+
+```{r}
+library(lubridate)
+library(xtable)
+library(wesanderson)
+```
+
+
+
+```{r readData}
+# setwd('~/Desktop/showdb/')
+sdb <- read.delim('showdb.txt', sep='\t', head=TRUE)
+```
+
+
+```{r explore}
+# head(sdb)
+dim(sdb)
+str(sdb)
+```
+
+
+```{r fixDates}
+sdb$ShowDateOriginal <- sdb$ShowDate
+sdb$ShowDate <- mdy(sdb$ShowDate)
+reCent <- function(x){
+  m <- year(x) %% 100
+  year(x) <- ifelse(m > 60, 1900+m, 2000+m)
+  x
+}
+sdb$ShowDate <- reCent(sdb$ShowDate)
+```
+
+```{r cutNAs}
+sdb <- sdb[which(!is.na(sdb$ShowDate)), ]
+dim(sdb)
+```
+
+```{r}
+nrow(sdb[which(sdb$City == '' | sdb$State == ''), c(1:4)])
+```
+
+
+```{r}
+names(sdb)
+```
+
+
+```{r}
+levels(sdb$Artist)
+gd <- sdb[sdb$Artist == 'Grateful Dead', ]
+ph <- sdb[sdb$Artist == 'Phish', ]
+jgb <- sdb[sdb$Artist == 'Jerry Garcia', ]
+dim(gd); dim(ph); dim(jgb)
+```
+
+
+
+```{r exploreGDDates}
+gd <- gd[order(gd$ShowDate), ]
+nonShows <- c(grep('rehearsal', gd$Comment, ignore.case=TRUE), 
+  grep('Studio', gd$Comment, ignore.case=TRUE), 
+  grep('recording', gd$Comment, ignore.case=TRUE))
+gd <- gd[-nonShows, ]
+dates <- range(gd$ShowDate)
+wholeRange <- seq(ymd(dates[1]), ymd(dates[2]),by='days')
+```
+
+```{r plotGDDates, fig.height=3, fig.width=12}
+plot(wholeRange, 1:length(wholeRange), type='n', ann=FALSE, 
+     yaxt='n', xaxt='n')
+axis(1, at=seq(ymd('1961-1-1'), ymd('1996-1-1'), by='years'), seq(1961, 1996, 1))
+abline(v=gd$ShowDate)
+```
+
+
+
+
+
+```{r uniqueGDSongs}
+delim <- "\\ \\-\\ E\\:\\ |E\\:\\ |E\\:|\\, |\\,|\\->\\ \\ |\\->\\ |\\->|\\ \\>\\ "
+
+gd$Set1Clean <- gsub('\\*', '', gd$Set1)
+gd$Set2Clean <- gsub('\\*', '', gd$Set2)
+gd$Set3Clean <- gsub('\\*', '', gd$Set3)
+gd$allCleanSets <- paste(gd$Set1Clean, gd$Set2Clean, gd$Set3Clean)
+allSets <- c(gd$Set1Clean, gd$Set2Clean, gd$Set3Clean)
+allSongs <- unlist(strsplit(as.character(allSets), delim))
+allUniqueSongs <- sort(unique(allSongs))
+length(allSongs)-1577  # minus blank entries
+
+## Unique Songs - used for debugging dataset
+# cbind(allUniqueSongs)
+```
+
+```{r topSongsTable}
+times <- matrix(0, nrow(gd), length(allUniqueSongs))
+dimnames(times)[2] <- list(allUniqueSongs)
+times[1:5, 1:5]
+#cbind(dimnames(times)[[2]])
+times <- times[, -c(1, 2, 4)]
+times <- times[, -c(which(colnames(times) %in% 
+                            c('', 
+                              '?', 
+                              '<technical difficulties>?',
+                              'Rain')))]
+times[1:5, 1:5]
+
+for (i in 1:ncol(times)) {
+  song <- dimnames(times)[[2]][i]
+  found <- grep(song, gd$allCleanSets)
+  times[found, i] <- 1
+  }
+# rowSums(times) 
+# sort(colSums(times))
+times <- times[, order(colSums(times), decreasing=FALSE)]
+counts <- data.frame(times=colSums(times), index=(ncol(times):1))
+countsSort <- counts[order(counts$index), ]
+# sum(counts$times)
+```
+
+```{r countsReadOut, results='asis'}
+print(xtable(countsSort), type='html')
+```
+
+
+```{r plotSongs, fig.height=10, fig.width=12}
+plot(wholeRange, 1:length(wholeRange), type='n', ann=FALSE, 
+     yaxt='n', xaxt='n', bty='n', ylim=c(1,ncol(times)))
+axis(1, at=seq(ymd('1961-1-1'), ymd('1996-1-1'), by='years'), seq(1961, 1996, 1))
+abline(v=gd$ShowDate, col='gray92')
+for(i in ncol(times):1) {
+  points(gd$ShowDate, rep(i, nrow(gd)), pch='.', cex=times[, i]*2, col='tomato')
+  }
+```
+
+
+sort(table(gd$ShowDate))
+
+1975 looks like all rehersal and recording? Look for them here: [dead.net](http://www.dead.net/shows?page=45)
+
+
+```{r getIntroDateOrder}
+timesBig <- times
+times <- times[, which(colSums(times) > 1)]
+ncol(times)  # songs
+nrow(times)  # dates
+rleSongs <- apply(times, 2, 'rle')
+introDate <- rep(0, ncol(times))
+for (i in 1:ncol(times)) {
+  introDate[i] <- rleSongs[[i]]$lengths[1]
+  }
+timesIntroOrder <- times[, rev(order(introDate))]
+```
+
+
+```{r getMarginDensity}
+timesIntroOrderNonzero <- timesIntroOrder[which(rowSums(timesIntroOrder) > 0), ]
+dens <- rep(0, ncol(timesIntroOrderNonzero))
+rleOrdered <- apply(timesIntroOrderNonzero, 2, 'rle')
+for(i in 1:length(dens)) {
+  vect <- timesIntroOrderNonzero[, i]
+  vect2 <- vect[rleOrdered[[i]]$lengths[1]:length(vect)]
+  dens[i] <- mean(vect2)
+  }
+```
+
+dens
+plot(dens, type='l')
+points(loess.smooth(1:length(dens), dens, degree=10), type='l')
+plot(loess.smooth(1:length(dens), dens, degree=2, span=.7), type='l')
+
+```{r plotSongsIntroOrder, fig.height=10, fig.width=12}
+par(mar=c(5, 1, 1, 10))
+plot(wholeRange, 1:length(wholeRange), type='n', ann=FALSE, yaxs='i',
+     yaxt='n', xaxt='n', bty='n', ylim=c(1,ncol(times)))
+axis(1, at=seq(ymd('1961-1-1'), ymd('1996-1-1'), by='years'), seq(1961, 1996, 1), las=2)
+abline(v=gd$ShowDate, col='gray92')
+for(i in ncol(timesIntroOrder):1) {
+  points(gd$ShowDate, rep(i, nrow(gd)), pch='.', cex=timesIntroOrder[, i]*2, col='tomato')
+  }
+```
+
+
+dim(timesIntroOrder)
+abline(h=250)
+abline(h=263)
+abline(h=235)
+colnames(timesIntroOrder)[250:263]
+colnames(timesIntroOrder)
+
+dim(times)
+dim(times[, which(colSums(times) < 2)])
+
+gd[grep('Rehearsal', gd$Comment), ]
+
+
+gd[unique(nonShows), 1:4]
+
+head(gd)
+
+
+
+
